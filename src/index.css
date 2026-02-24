@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Limelight&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-broadway: "Limelight", cursive;
+
+  /* Material 3 Expressive Palette - Dark (Default) */
+  --color-m3-primary: #D0BCFF;
+  --color-m3-on-primary: #381E72;
+  --color-m3-primary-container: #4F378B;
+  --color-m3-on-primary-container: #EADDFF;
+
+  --color-m3-secondary: #CCC2DC;
+  --color-m3-on-secondary: #332D41;
+  --color-m3-secondary-container: #4A4458;
+  --color-m3-on-secondary-container: #E8DEF8;
+
+  --color-m3-tertiary: #EFB8C8;
+  --color-m3-on-tertiary: #492532;
+  --color-m3-tertiary-container: #633B48;
+  --color-m3-on-tertiary-container: #FFD8E4;
+
+  --color-m3-surface: #0F0D13;
+  --color-m3-on-surface: #E6E1E5;
+  --color-m3-surface-variant: #49454F;
+  --color-m3-on-surface-variant: #CAC4D0;
+
+  --color-m3-outline: #938F99;
+}
+
+@layer base {
+  :root.light {
+    --color-m3-primary: #6750A4;
+    --color-m3-on-primary: #FFFFFF;
+    --color-m3-primary-container: #EADDFF;
+    --color-m3-on-primary-container: #21005D;
+    
+    --color-m3-secondary: #625B71;
+    --color-m3-on-secondary: #FFFFFF;
+    --color-m3-secondary-container: #E8DEF8;
+    --color-m3-on-secondary-container: #1D192B;
+    
+    --color-m3-tertiary: #7D5260;
+    --color-m3-on-tertiary: #FFFFFF;
+    --color-m3-tertiary-container: #FFD8E4;
+    --color-m3-on-tertiary-container: #31111D;
+    
+    --color-m3-surface: #FEF7FF;
+    --color-m3-on-surface: #1D1B20;
+    --color-m3-surface-variant: #E7E0EB;
+    --color-m3-on-surface-variant: #49454F;
+    
+    --color-m3-outline: #79747E;
+  }
+
+  body {
+    @apply bg-m3-surface text-m3-on-surface font-sans antialiased transition-colors duration-500;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(208, 188, 255, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(239, 184, 200, 0.03) 0px, transparent 50%);
+  }
+
+  .light body {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(103, 80, 164, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(125, 82, 96, 0.05) 0px, transparent 50%);
+  }
+
+  .liquid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--color-m3-surface);
+  }
+
+  .liquid-blob {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--color-m3-primary) 0%, transparent 70%);
+    filter: blur(100px);
+    opacity: 0.2;
+    border-radius: 50%;
+    animation: liquid-float 25s infinite alternate ease-in-out;
+  }
+
+  .liquid-blob:nth-child(2) {
+    background: radial-gradient(circle, var(--color-m3-tertiary) 0%, transparent 70%);
+    width: 600px;
+    height: 600px;
+    animation-delay: -7s;
+    animation-duration: 30s;
+    opacity: 0.15;
+  }
+
+  .liquid-blob:nth-child(3) {
+    background: radial-gradient(circle, var(--color-m3-secondary) 0%, transparent 70%);
+    width: 900px;
+    height: 900px;
+    animation-delay: -15s;
+    animation-duration: 35s;
+    opacity: 0.1;
+  }
+
+  @keyframes liquid-float {
+    0% { transform: translate(-20%, -20%) scale(1) rotate(0deg); }
+    50% { transform: translate(10%, 10%) scale(1.1) rotate(180deg); }
+    100% { transform: translate(30%, 30%) scale(1.2) rotate(360deg); }
+  }
+}
+
+.m3-glass {
+  background-color: rgba(15, 13, 19, 0.4);
+  backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.light .m3-glass {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.m3-card {
+  background-color: rgba(15, 13, 19, 0.4);
+  backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  @apply rounded-[3rem] transition-all duration-700;
+}
+
+.light .m3-card {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.m3-button-primary {
+  @apply bg-m3-primary text-m3-on-primary px-8 py-4 rounded-[2rem] font-bold transition-all hover:shadow-2xl hover:shadow-m3-primary/30 hover:-translate-y-0.5 active:scale-95 disabled:opacity-50 relative overflow-hidden;
+}
+
+.m3-button-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.m3-button-primary:hover::after {
+  opacity: 1;
+  animation: liquid-button-glow 3s infinite linear;
+}
+
+@keyframes liquid-button-glow {
+  0% { transform: translate(-30%, -30%) rotate(0deg); }
+  100% { transform: translate(-30%, -30%) rotate(360deg); }
+}
+
+.m3-button-tonal {
+  @apply bg-m3-secondary-container/50 dark:bg-m3-secondary-container/10 text-m3-on-secondary-container px-8 py-4 rounded-[2rem] font-bold transition-all hover:bg-m3-secondary-container/80 dark:hover:bg-m3-secondary-container/20 active:scale-95 backdrop-blur-md;
+}
+
+.m3-input {
+  @apply bg-m3-surface-variant/30 dark:bg-m3-surface-variant/10 border border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-m3-primary outline-none transition-all backdrop-blur-md;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-m3-outline/20 rounded-full hover:bg-m3-outline/40 transition-colors;
+}
+
